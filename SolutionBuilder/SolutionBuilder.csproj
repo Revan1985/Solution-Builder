@@ -1,189 +1,55 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBE87D6F-47AC-4121-8193-9F85721A88BC}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionBuilder</RootNamespace>
-    <AssemblyName>SolutionBuilder</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Build" />
-    <Reference Include="Microsoft.Build.Engine" />
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="Onion.SolutionParser.Parser">
-      <HintPath>..\packages\Onion.SolutionParser.Parser.1.0.0.0\lib\net45\Onion.SolutionParser.Parser.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
-      <HintPath>..\packages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AwaitableDelegateCommand.cs" />
-    <Compile Include="Compiler.cs" />
-    <Compile Include="DelegateCommand.cs" />
-    <Compile Include="Exporter.cs" />
-    <Compile Include="IAsyncCommand.cs" />
-    <Compile Include="IRaiseCanExecuteChanged.cs" />
-    <Compile Include="Model\AutoDeploy.cs" />
-    <Compile Include="Model\Database\BackupScriptCommandType.cs" />
-    <Compile Include="Model\Database\BackupScriptType.cs" />
-    <Compile Include="Model\Configuration.cs" />
-    <Compile Include="Model\BuildStatus.cs" />
-    <Compile Include="Model\Database\DatabaseType.cs" />
-    <Compile Include="Model\Module\ControlsType.cs" />
-    <Compile Include="Model\IChildItem.cs" />
-    <Compile Include="Model\IModulesType.cs" />
-    <Compile Include="Model\Installation.cs" />
-    <Compile Include="Model\Module\InterfacesType.cs" />
-    <Compile Include="Model\Module\MergerType.cs" />
-    <Compile Include="Model\Module\ModulesType.cs" />
-    <Compile Include="Model\Module\ModuleType.cs" />
-    <Compile Include="Model\Module\Project.cs" />
-    <Compile Include="Package.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Zip.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Config.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Config.Default.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Readme.txt" />
-    <None Include="Config.bck">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Jobs\**" />
+		<EmbeddedResource Remove="Jobs\**" />
+		<None Remove="Jobs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Common.CrossTargeting.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Common.CurrentVersion.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Common.overridetasks" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Common.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Common.tasks" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.CSharp.CrossTargeting.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.CSharp.CurrentVersion.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.CSharp.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Managed.After.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Managed.Before.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.Managed.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.NET.props" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.NETFramework.CurrentVersion.props" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.NETFramework.CurrentVersion.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.NETFramework.props" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.NETFramework.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.VisualBasic.CrossTargeting.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.VisualBasic.CurrentVersion.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.VisualBasic.targets" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.VisualStudioVersion.v11.Common.props" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.VisualStudioVersion.v12.Common.props" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\Microsoft.VisualStudioVersion.v14.Common.props" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\MSBuild.dll" />
+		<Content Remove="C:\Users\Davide\.nuget\packages\microsoft.build.runtime\17.1.0\contentFiles\any\net6.0\MSBuild.runtimeconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Buildalyzer" Version="3.2.8" />
+		<PackageReference Include="Microsoft.Build" Version="17.2.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="17.2.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.Build.Locator" Version="1.4.1" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.2.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.2.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Spectre.Console" Version="0.44.0" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+	</ItemGroup>
+
 </Project>

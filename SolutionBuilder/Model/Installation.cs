@@ -1,253 +1,237 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿
+using Microsoft.Build.Construction;
+using Newtonsoft.Json;
+using Spectre.Console;
 
-namespace SolutionBuilder
+namespace SolutionBuilder.Model
 {
-    public delegate void AppendTextBoxLogDelegate(String value);
-
-    /// <summary>
-    /// Installation (root lovel for Modules & Controls)
-    /// </summary>
-    public class Installation : IChildItem<Configuration>
+    public class Installation
     {
-        private Configuration parent = null;
+        protected internal SolutionConfiguration _parent = new();
 
-        #region IChildItem<Configuration>
+        [JsonProperty("Name", Order = 0, Required = Required.Always)]
+        public string Name { get; set; } = string.Empty;
 
-        [XmlIgnore()]
-        public Configuration Parent
+        [JsonProperty("SolutionFilename", Order = 1, Required = Required.Always)]
+        public string SolutionFilename { get; set; } = string.Empty;
+
+        [JsonProperty("SourcePath", Order = 2, Required = Required.DisallowNull)]
+        public string SourcePath { get; set; } = string.Empty;
+
+        [JsonProperty("OutputPath", Order = 3, Required = Required.DisallowNull)]
+        public string OutputPath { get; set; } = string.Empty;
+
+        [JsonProperty("Compression", Order = 4, Required = Required.DisallowNull)]
+        public int Compression { get; set; } = 0;
+        [JsonProperty("Enabled", Order = 5, Required = Required.Always)]
+        public bool Enabled { get; set; } = true;
+
+        [JsonProperty("ClearDestination", Order = 6, Required = Required.Always)]
+        public bool ClearDestination { get; set; } = false;
+
+        [JsonProperty("Commands", Order = 7)]
+        [JsonConverter(typeof(CommandConverter))]
+        public List<Command> Commands { get; set; } = new();
+
+        public event EventHandler<ProgressEventArgs>? Progress;
+
+        public bool Execute(Progress? progress)
         {
-            get { return parent; }
-            internal set
+            //Console.WriteLine("Premi un tasto per continuare:");
+            //var x = Console.ReadKey();
+            if (!Enabled)
             {
-                if (parent != value)
+                OnProgress(new("[darkorange]Operation disabled by configuration![/]"));
+                return true;
+            }
+
+            // source project path
+            string sourcePath = Path.Combine(_parent.SourcePath, SourcePath);
+            // destination project path (here are copied all dll's)
+            string destinationPath = Path.Combine(_parent.OutputPath, OutputPath);
+            // temporary support path (here are copied all project files and will be used as modification)
+            string temporaryPath = Path.Combine(_parent.TemporaryPath, OutputPath);
+
+
+            if (progress != null)
+            {
+                progress.Start(ctx =>
                 {
-                    parent = value;
-                    if (parent != null)
+                    if (Directory.Exists(temporaryPath) && ClearDestination)
                     {
-                        this.CompleteOutputPath = System.IO.Path.Combine(parent.Output, this.Output ?? this.Source);
+                        OnProgress(new("[grey]Temporary directory delete...[/]"));
+                        DeleteDirectory(temporaryPath, ctx);
                     }
+
+                    if (!Directory.Exists(temporaryPath) && ClearDestination)
+                    {
+                        Directory.CreateDirectory(temporaryPath);
+                    }
+                    else if (!Directory.Exists(temporaryPath) && !ClearDestination)
+                    {
+                        throw new InvalidConfigurationException("Check configuration, temporary path does not exists and clear destination is not set...");
+                    }
+
+                    OnProgress(new("[grey]Temporary directory creation...[/]"));
+                    OnProgress(new("[grey]Starting copy[/]"));
+
+                    if (Directory.Exists(temporaryPath) && ClearDestination)
+                    {
+                        CopyDirectory(sourcePath, temporaryPath, true, ctx);
+                    }
+
+                    OnProgress(new("[grey]Copy completed[/]"));
+                });
+            }
+            else
+            {
+                if (Directory.Exists(temporaryPath) && ClearDestination)
+                {
+                    OnProgress(new("[grey]Temporary directory delete...[/]"));
+                    DeleteDirectory(temporaryPath, null);
+                }
+
+                if (!Directory.Exists(temporaryPath) && ClearDestination)
+                {
+                    Directory.CreateDirectory(temporaryPath);
+                }
+
+                OnProgress(new("[grey]Temporary directory creation...[/]"));
+                OnProgress(new("[grey]Starting copy[/]"));
+
+                if (Directory.Exists(temporaryPath) && ClearDestination)
+                {
+                    CopyDirectory(sourcePath, temporaryPath, true, null);
+                }
+
+                OnProgress(new("[grey]Copy completed[/]"));
+            }
+
+
+            string solutionFile = Path.Combine(temporaryPath, SolutionFilename);
+            if (!File.Exists(solutionFile))
+            {
+                OnProgress(new($"\t[red]File {SolutionFilename} does not exists in temporary path...[/]"));
+                throw new InvalidOperationException($"File {SolutionFilename} does not exists in temporary path...");
+            }
+
+            SolutionFile solution = SolutionFile.Parse(solutionFile);
+            bool result = false;
+            foreach (Command command in Commands.OrderBy(c => c.Order))
+            {
+                command.CommandExecution += CommandExecution;
+                command.SolutionFile = solutionFile;
+                if (command is CommandBuild build)
+                {
+                    build.Options.Add(nameof(_parent.Configuration), _parent.Configuration);
+                    build.Options.Add(nameof(_parent.Platform), _parent.Platform);
+                }
+
+                result = command switch
+                {
+                    CommandCopy => command.Execute(solution, _parent.OutputPath, progress),
+                    _ => command.Execute(solution, _parent.TemporaryPath, progress),
+                };
+
+                if (result == false) { return false; }
+            }
+
+            return result;
+        }
+
+        private void CommandExecution(object? sender, CommandEventArgs e)
+        {
+            string text = e.Text;
+            OnProgress(new(text));
+        }
+
+        protected virtual void OnProgress(ProgressEventArgs e) => Progress?.Invoke(this, e);
+
+        internal static void CopyDirectory(string sourcePath, string destinationPath, bool recursive, ProgressContext? context)
+        {
+            DirectoryInfo directory = new(sourcePath);
+            if (sourcePath.ToLower().EndsWith("resources") == true)
+            {
+
+            }
+            if (!directory.Exists)
+            {
+                AnsiConsole.MarkupLine($"\t[red]Source directory not found {directory.FullName}[/]");
+                throw new DirectoryNotFoundException($"Source directory not found {directory.FullName}");
+            }
+
+            if (sourcePath.StartsWith("C:\\Windows")) { return; }
+
+            if (directory.Name.StartsWith(".")) { return; }
+            if (directory.Name.StartsWith("bin")) { return; }
+            if (directory.Name.StartsWith("obj")) { return; }
+
+            DirectoryInfo[] directories = directory.GetDirectories();
+            Directory.CreateDirectory(destinationPath);
+
+            ProgressTask? task = context?.AddTask(directory.Name, true);
+
+            FileInfo[] files = directory.GetFiles().Where(l => l.Extension != "licx").ToArray();
+
+            for (int i = 0; i < files.Length; ++i)
+            {
+                FileInfo file = files[i];
+                if (task != null) { task.Value = (i - 1) / (double)(files.Length + directories.Length) * 100.0; }
+                string target = Path.Combine(destinationPath, file.Name);
+                file.CopyTo(target);
+            }
+
+#if DEBUG
+            context?.Refresh();
+#endif
+
+            if (recursive)
+            {
+                for (int i = 0; i < directories.Length; ++i)
+                {
+                    DirectoryInfo dir = directories[i];
+                    if (task != null) { task.Value = (files.Length + (i - 1)) / (double)(files.Length + directories.Length) * 100.0; }
+                    string destination = Path.Combine(destinationPath, dir.Name);
+                    CopyDirectory(dir.FullName, destination, recursive, context);
                 }
             }
-        }
-        Configuration IChildItem<Configuration>.Parent
-        {
-            get { return this.Parent; }
-            set { this.Parent = value; }
+
+            task?.StopTask();
         }
 
-        internal void SetParent(Configuration parent)
+        internal static void DeleteDirectory(string target_dir, ProgressContext? context)
         {
-            Parent = parent;
-            foreach (ModulesType module in ModuleType.OfType<ModulesType>()) { module.SetParent(this); }
-            foreach (ControlsType module in ModuleType.OfType<ControlsType>()) { module.SetParent(this); }
-            Database.Parent = this;
-        }
-        void IChildItem<Configuration>.SetParent(Configuration parent)
-        {
-            SetParent(parent);
-        }
+            ProgressTask? task = context?.AddTask(target_dir, true);
 
-        #endregion IChildItem<Configuration>
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
 
-        /// <summary>
-        /// Name of the Configuration
-        /// </summary>
-        [XmlAttribute("Name")]
-        public String Name { get; set; }
-        /// <summary>
-        /// Source Folder (Combined with Parent.SourcePath)
-        /// </summary>
-        [XmlAttribute("DefaultSourcePath")]
-        public String Source { get; set; }
-
-        [XmlAttribute("DefaultOutputPath")]
-        public String Output { get; set; }
-
-        /// <summary>
-        /// Filter for exclusion (divided by a pipe | )
-        /// </summary>
-        [XmlAttribute("Exclude")]
-        public String Exclude { get; set; }
-        /// <summary>
-        /// The Compression Level, must be between 1 and 9
-        /// </summary>
-        [XmlAttribute("CompressionLevel")]
-        public UInt16 Compression { get; set; }
-
-        [XmlElement("Exports")]
-        public String Exports { get; set; }
-
-        /// <summary>
-        /// ModulesType & ControlsType
-        /// </summary>
-        [XmlElement("Modules", typeof(ModulesType))]
-        [XmlElement("Controls", typeof(ControlsType))]
-        [XmlElement("Interfaces", typeof(InterfacesType))]
-        public List<Object> ModuleType { get; set; }
-
-        /// <summary>
-        /// Database Scripts
-        /// </summary>
-        [XmlElement("Database")]
-        public DatabaseType Database { get; set; }
-
-        [XmlElement("Deploy")]
-        public Deploy[] Deployes { get; set; }
-
-        /// <summary>
-        /// List of Modules
-        /// </summary>
-        [XmlIgnore()]
-        public List<ModuleType> Modules
-        {
-            get
+            for (int i = 0; i < files.Length; ++i)
             {
-                if (ModuleType == null) { return null; }
-                ModulesType modules = ModuleType.OfType<ModulesType>().FirstOrDefault();
-                if (modules == null) { return null; }
-                return modules.Modules;
+                string file = files[i];
+                if (task != null) { task.Value = (i - 1) / (double)(files.Length + dirs.Length) * 100.0; }
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
             }
-        }
 
-        /// <summary>
-        /// List of Controls
-        /// </summary>
-        [XmlIgnore()]
-        public List<ModuleType> Controls
-        {
-            get
+            for (int i = 0; i < dirs.Length; ++i)
             {
-                if (ModuleType == null) { return null; }
-                ControlsType controls = ModuleType.OfType<ControlsType>().FirstOrDefault();
-                if (controls == null) { return null; }
-                return controls.Controls;
+                string dir = dirs[i];
+                if (task != null) { task.Value = (files.Length + (i - 1)) / (double)(files.Length + dirs.Length) * 100.0; }
+                DeleteDirectory(dir, context);
             }
-        }
 
-        [XmlIgnore()]
-        public List<ModuleType> Interfaces
-        {
-            get
-            {
-                if (ModuleType == null) { return null; }
-                InterfacesType interfaces = ModuleType.OfType<InterfacesType>().FirstOrDefault();
-                if (interfaces == null) { return null; }
-                return interfaces.Interfaces;
-            }
-        }
-
-        private String[] exclusions = null;
-        private String[] exportList = null;
-
-        [XmlIgnore()]
-        public Boolean StopCompilationOnError { get; set; }
-
-        [XmlIgnore()]
-        public Boolean AllowMulticoreUsage { get; set; }
-
-        /// <summary>
-        /// Should compile Selected Modules/Controls?
-        /// </summary>
-        [XmlIgnore()]
-        public Boolean Compile { get; set; }
-
-        [XmlIgnore()]
-        public Boolean DeleteLogs { get; set; }
-
-        /// <summary>
-        /// Increment the Build version (0.0.&gt;X&lt;.0)
-        /// </summary>
-        [XmlIgnore()]
-        public Boolean IncrementBuild { get; set; }
-
-        /// <summary>
-        /// Execute Scripts?
-        /// </summary>
-        [XmlIgnore()]
-        public Boolean ExecuteScripts { get; set; }
-
-        /// <summary>
-        /// Create a package from Selected Modules/Controls?
-        /// </summary>
-        [XmlIgnore()]
-        public Boolean CreatePackage { get; set; }
-
-        /// <summary>
-        /// Archive the Package?
-        /// </summary>
-        [XmlIgnore()]
-        public Boolean ArchivePackage { get; set; }
-
-        /// <summary>
-        /// The Complete OutputPath for current Installation/Build
-        /// </summary>
-        [XmlIgnore()]
-        public String CompleteOutputPath { get; set; }
-
-        /// <summary>
-        /// The Exclude field divided.
-        /// </summary>
-        [XmlIgnore()]
-        public String[] Exclusions
-        {
-            get
-            {
-                if (exclusions == null && !String.IsNullOrEmpty(Exclude)) { exclusions = Exclude.Split('|'); }
-                return exclusions;
-            }
-        }
-
-        [XmlIgnore()]
-        public String[] ExportList
-        {
-            get
-            {
-                if (exportList == null) { exportList = String.IsNullOrEmpty(Exports) ? new String[0] : Exports.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries); }
-                return exportList;
-            }
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Installation()
-        {
-            this.ModuleType = new List<Object>();
-        }
-
-        public Installation(Installation other)
-        {
-            this.Compression = other.Compression;
-            this.Database = other.Database;
-            this.Exclude = other.Exclude;
-            this.Name = other.Name;
-            this.Parent = other.Parent;
-            this.Source = other.Source;
-            this.ModuleType = other.ModuleType;
-            this.SetParent(other.Parent);
-        }
-
-        /// <summary>
-        /// Event for Appending Text
-        /// </summary>
-        public event AppendTextBoxLogDelegate AppendTextBoxLog;
-
-        public void OnAppendTextBoxLog(String value)
-        {
-            if (AppendTextBoxLog != null)
-            {
-                AppendTextBoxLog(value);
-            }
-        }
-        public void OnAppendTextBoxLog(String value, params Object[] args)
-        {
-            OnAppendTextBoxLog(String.Format(value, args));
+            Directory.Delete(target_dir, false);
+            task?.StopTask();
         }
     }
+    public class ProgressEventArgs : EventArgs
+    {
+        public string Text { get; init; }
 
+        public ProgressEventArgs(string text)
+        {
+            Text = text;
+        }
+    }
 }

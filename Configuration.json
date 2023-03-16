@@ -1,0 +1,1796 @@
+{
+  "SourcePath": "D:\\Sviluppo",
+  "OutputPath": "D:\\Build",
+  "TemporaryPath": "D:\\Building\\Temp",
+  "Configuration": [
+    {
+      "Name": "Alesys SecurityControlServer",
+      "SolutionFilename": "SecurityControlServer.sln",
+      "SourcePath": "SecurityControlServer",
+      "OutputPath": "SecurityControlServer",
+      "Compression": 0,
+      "Enabled": true,
+      "ClearDestination": true,
+      "Commands": [
+        {
+          "Order": 1,
+          "Name": "Replace",
+          "Type": "Replace",
+          "Description": null,
+          "ProjectNames": [
+            "SecurityControlServerCommon",
+            "SecurityControlServerDatabase",
+            "SecurityControlServer",
+            "IntegroServer.Managers",
+            "Integro.Server.Extras",
+            "SecurityControlServer",
+            "SecurityControlServer.Fep",
+            "IntegroServer.Managers.Server"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Assembly": {
+              "Order": 1,
+              "Source": "SecurityControlServer",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "*.cs"
+            },
+            "Replace-Assembly-2": {
+              "Order": 3,
+              "Source": "Integro.",
+              "SourceFallback": null,
+              "Value": "Tappo.",
+              "File": null
+            },
+            "Replace-Alesys": {
+              "Order": 2,
+              "Source": "\"Alesys",
+              "SourceFallback": null,
+              "Value": "\"Tappo",
+              "File": null
+            }
+          }
+        },
+        {
+          "Order": 2,
+          "Name": "Replace",
+          "Type": "Replace",
+          "Description": null,
+          "ProjectNames": [
+            "Integro.RestApi"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Assembly": {
+              "Order": 1,
+              "Source": "SecurityControlServer",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "*.cs"
+            },
+            "Replace-Assembly-2": {
+              "Order": 1,
+              "Source": "Integro.RestApi",
+              "SourceFallback": null,
+              "Value": "Tappo.RestApi",
+              "File": "*.cs"
+            },
+            "Replace-Alesys": {
+              "Order": 2,
+              "Source": "\"Alesys",
+              "SourceFallback": null,
+              "Value": "\"Tappo",
+              "File": null
+            }
+          }
+        },
+        {
+          "Order": 10,
+          "Name": "Replace-CsProj",
+          "Type": "Replace-CsProj",
+          "Description": null,
+          "ProjectNames": [
+            "SecurityControlServer"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": null
+            },
+            "Replace-AssemblyName": {
+              "Order": 2,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": null
+            }
+          }
+        },
+        {
+          "Order": 11,
+          "Name": "Replace-CsProj",
+          "Type": "Replace-CsProj",
+          "Description": null,
+          "ProjectNames": [
+            "SecurityControlServer.Fep"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Fep",
+              "File": null
+            },
+            "Replace-AssemblyName": {
+              "Order": 2,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Fep",
+              "File": null
+            }
+          }
+        },
+        {
+          "Order": 20,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "SecurityControlServer"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyTitle": {
+              "Order": 1,
+              "Source": "AssemblyTitle",
+              "SourceFallback": null,
+              "Value": "Tippo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCompany": {
+              "Order": 1,
+              "Source": "AssemblyCompany",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyDescription": {
+              "Order": 1,
+              "Source": "AssemblyDescription",
+              "SourceFallback": null,
+              "Value": "Tappo Control Server",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyProduct": {
+              "Order": 1,
+              "Source": "AssemblyProduct",
+              "SourceFallback": null,
+              "Value": "Tappo Control",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCopyright": {
+              "Order": 1,
+              "Source": "AssemblyCopyright",
+              "SourceFallback": null,
+              "Value": "Tappo © 2022 Tippo",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 21,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "SecurityControlServer.Fep"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyTitle": {
+              "Order": 1,
+              "Source": "AssemblyTitle",
+              "SourceFallback": null,
+              "Value": "Tippo.Fep",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCompany": {
+              "Order": 1,
+              "Source": "AssemblyCompany",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCopyright": {
+              "Order": 1,
+              "Source": "AssemblyCopyright",
+              "SourceFallback": null,
+              "Value": "Tappo © 2022 Tippo",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 99,
+          "Name": "Build",
+          "Type": "Build",
+          "Description": null,
+          "ProjectNames": [
+            "SecurityControlServer",
+            "SecurityControlServer.Fep"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Build-AnyCpu": {
+              "Order": 1,
+              "Source": null,
+              "SourceFallback": null,
+              "Value": "",
+              "File": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Alesys Extensibility Compile",
+      "SolutionFilename": "Alesys.Extensibility.sln",
+      "SourcePath": "Alesys.Extensibility",
+      "OutputPath": "Alesys.Extensibility",
+      "Compression": 0,
+      "Enabled": true,
+      "ClearDestination": true,
+      "Commands": [
+        {
+          "Order": 1,
+          "Name": "Replace",
+          "Type": "Replace",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginCommands",
+            "Alesys.Extensibility.PluginMessages",
+            "Alesys.Extensibility.Ui.Resources",
+            "Alesys.Extensibility.Ui",
+            "Alesys.Extensibility.Ui.PluginInterfaces",
+            "Alesys.Extensibility.Ui.VideowallItem"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Alesys": {
+              "Order": 1,
+              "Source": "Alesys",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": null
+            }
+          }
+        },
+        {
+          "Order": 20,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginCommands",
+            "Alesys.Extensibility.PluginMessages",
+            "Alesys.Extensibility.Ui.PluginInterfaces",
+            "Alesys.Extensibility.Ui",
+            "Alesys.Extensibility.Ui.Resources",
+            "Alesys.Extensibility.Ui.VideowallItem"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Authors": {
+              "Order": 1,
+              "Source": "Authors",
+              "SourceFallback": null,
+              "Value": "Tippo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCompany": {
+              "Order": 2,
+              "Source": "AssemblyCompany",
+              "SourceFallback": "Company",
+              "Value": "Tappo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyProduct": {
+              "Order": 1,
+              "Source": "AssemblyProduct",
+              "SourceFallback": null,
+              "Value": "Tappo Control",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCopyright": {
+              "Order": 1,
+              "Source": "AssemblyCopyright",
+              "SourceFallback": "Copyright",
+              "Value": "Tappo © 2022 Tippo",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 21,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginCommands"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.PluginCommands",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.PluginCommands",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 22,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginMessages"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.PluginMessages",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.PluginMessages",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 23,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.Ui.PluginInterfaces"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui.PluginInterfaces",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui.PluginInterfaces",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 24,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.Ui"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 25,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.Ui.Resources"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui.Resources",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui.Resources",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 26,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.Ui.VideowallItem"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui.VideowallItem",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Extensibility.Ui.VideowallItem",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 999,
+          "Name": "Build",
+          "Type": "Build",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginCommands",
+            "Alesys.Extensibility.PluginMessages",
+            "Alesys.Extensibility.Ui.PluginInterfaces",
+            "Alesys.Extensibility.Ui",
+            "Alesys.Extensibility.Ui.Resources",
+            "Alesys.Extensibility.Ui.VideowallItem"
+          ],
+          "SolutionFile": null,
+          "Actions": {}
+        }
+      ]
+    },
+    {
+      "Name": "Alesys Extensibility Dll Replace & Compile (2)",
+      "SolutionFilename": "Alesys.Extensibility.sln",
+      "SourcePath": "Alesys.Extensibility",
+      "OutputPath": "Alesys.Extensibility",
+      "Compression": 0,
+      "Enabled": true,
+      "ClearDestination": false,
+      "Commands": [
+        {
+          "Order": 99,
+          "Name": "Replace-References",
+          "Type": "Replace-References",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginCommands",
+            "Alesys.Extensibility.PluginMessages",
+            "Alesys.Extensibility.Ui.Resources",
+            "Alesys.Extensibility.Ui",
+            "Alesys.Extensibility.Ui.PluginInterfaces",
+            "Alesys.Extensibility.Ui.VideowallItem"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Extensibility.PluginCommands": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.PluginCommands",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginCommands\\Alesys.Extensibility.PluginCommands.csproj",
+              "File": "*.Extensibility.PluginCommands.dll"
+            },
+            "Replace-Extensibility.Ui": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui\\Alesys.Extensibility.Ui.csproj",
+              "File": "*.Extensibility.Ui.dll"
+            },
+            "Replace-Extensibility.Ui.PluginInterfaces": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.PluginInterfaces",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginInterfaces\\Alesys.Extensibility.Ui.PluginInterfaces.csproj",
+              "File": "*.Extensibility.Ui.PluginInterfaces.dll"
+            },
+            "Replace-Extensibility.Ui.Resources": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.Resources",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui.Resources\\Alesys.Extensibility.Ui.Resources.csproj",
+              "File": "*.Extensibility.Ui.Resources.dll"
+            },
+            "Replace-Extensibility.Ui.VideowallItem": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.VideowallItem",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.VideowallItem\\Alesys.Extensibility.Ui.VideowallItem.csproj",
+              "File": "*.Extensibility.Ui.VideowallItem.dll"
+            }
+          }
+        },
+        {
+          "Order": 999,
+          "Name": "Build",
+          "Type": "Build",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.Extensibility.PluginCommands",
+            "Alesys.Extensibility.PluginMessages",
+            "Alesys.Extensibility.Ui.PluginInterfaces",
+            "Alesys.Extensibility.Ui",
+            "Alesys.Extensibility.Ui.Resources",
+            "Alesys.Extensibility.Ui.VideowallItem"
+          ],
+          "SolutionFile": null,
+          "Actions": {}
+        }
+      ]
+    },
+    {
+      "Name": "Alesys Common Controls",
+      "SolutionFilename": "AlesysCommonControls.sln",
+      "SourcePath": "AlesysCommonControls",
+      "OutputPath": "AlesysCommonControls",
+      "Compression": 0,
+      "Enabled": true,
+      "ClearDestination": true,
+      "Commands": [
+        {
+          "Order": 2,
+          "Name": "Replace",
+          "Type": "Replace",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.AudioEngine",
+            "Alesys.CommonControls.Calendar",
+            "Alesys.CommonControls.CommonUI",
+            "Alesys.CommonControls.ComboIconsList",
+            "Alesys.CommonControls.CommonFunctions",
+            "Alesys.CommonControls.DxAreaSharp",
+            "Alesys.CommonControls.JoystickManager",
+            "Alesys.CommonControls.ModelForms",
+            "Alesys.CommonControls.PerformanceMonitor",
+            "Alesys.CommonControls.PopupCallNotification",
+            "Alesys.CommonControls.ProgressRings",
+            "Alesys.CommonControls.PtzControlPanel",
+            "Alesys.CommonControls.Timeline",
+            "Alesys.CommonControls.TimelineVideo",
+            "Alesys.CommonControls.VideoLive",
+            "Alesys.CommonControls.Videowall",
+            "Alesys.CommonControls.VideowallContainer",
+            "Alesys.CommonControls.Webcam",
+            "Alesys.CommonControls.WeekPlanPro"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Assembly": {
+              "Order": 1,
+              "Source": "SecurityControl",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "*.cs"
+            },
+            "Replace-Assembly-2": {
+              "Order": 1,
+              "Source": "Integro",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "*.cs"
+            },
+            "Replace-Assembly-3": {
+              "Order": 1,
+              "Source": "Alesys",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "*.cs"
+            },
+            "Replace-Alesys": {
+              "Order": 2,
+              "Source": "\"Alesys",
+              "SourceFallback": null,
+              "Value": "\"Tappo",
+              "File": null
+            }
+          }
+        },
+        {
+          "Order": 20,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.AudioEngine",
+            "Alesys.CommonControls.Calendar",
+            "Alesys.CommonControls.CommonUI",
+            "Alesys.CommonControls.ComboIconsList",
+            "Alesys.CommonControls.CommonFunctions",
+            "Alesys.CommonControls.DxAreaSharp",
+            "Alesys.CommonControls.JoystickManager",
+            "Alesys.CommonControls.ModelForms",
+            "Alesys.CommonControls.PerformanceMonitor",
+            "Alesys.CommonControls.PopupCallNotification",
+            "Alesys.CommonControls.ProgressRings",
+            "Alesys.CommonControls.PtzControlPanel",
+            "Alesys.CommonControls.Timeline",
+            "Alesys.CommonControls.TimelineVideo",
+            "Alesys.CommonControls.VideoLive",
+            "Alesys.CommonControls.Videowall",
+            "Alesys.CommonControls.VideowallContainer",
+            "Alesys.CommonControls.Webcam",
+            "Alesys.CommonControls.WeekPlanPro"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Authors": {
+              "Order": 1,
+              "Source": "Authors",
+              "SourceFallback": null,
+              "Value": "Tippo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCompany": {
+              "Order": 2,
+              "Source": "AssemblyCompany",
+              "SourceFallback": "Company",
+              "Value": "Tappo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyProduct": {
+              "Order": 1,
+              "Source": "AssemblyProduct",
+              "SourceFallback": null,
+              "Value": "Tappo Control",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCopyright": {
+              "Order": 1,
+              "Source": "AssemblyCopyright",
+              "SourceFallback": "Copyright",
+              "Value": "Tappo © 2022 Tippo",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 21,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.AudioEngine"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.AudioEngine",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.AudioEngine",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 22,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.Calendar"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Calendar",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Calendar",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 23,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.CommonUI"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.CommonUI",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.CommonUI",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 24,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.ComboIconsList"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.ComboIconsList",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.ComboIconsList",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 25,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.CommonFunctions"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.CommonFunctions",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.CommonFunctions",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 26,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.DxAreaSharp"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.DxAreaSharp",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.DxAreaSharp",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 27,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.JoystickManager"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.JoystickManager",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.JoystickManager",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 28,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.ModelForms"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.ModelForms",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.ModelForms",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 29,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.PerformanceMonitor"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.PerformanceMonitor",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.PerformanceMonitor",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 30,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.PopupCallNotification"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.PopupCallNotification",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.PopupCallNotification",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 31,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.ProgressRings"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.ProgressRings",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.ProgressRings",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 32,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.PtzControlPanel"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.PtzControlPanel",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.PtzControlPanel",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 33,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.Timeline"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Timeline",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Timeline",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 34,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.TimelineVideo"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.TimelineVideo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.TimelineVideo",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 35,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.VideoLive"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.VideoLive",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.VideoLive",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 36,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.Videowall"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Videowall",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Videowall",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 37,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.VideowallContainer"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.VideowallContainer",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.VideowallContainer",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 38,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.Webcam"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Webcam",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.Webcam",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 39,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.WeekPlanPro"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 1,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.WeekPlanPro",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 1,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.CommonControls.WeekPlanPro",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 99,
+          "Name": "Replace-References",
+          "Type": "Replace-References",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.AudioEngine",
+            "Alesys.CommonControls.Calendar",
+            "Alesys.CommonControls.CommonUI",
+            "Alesys.CommonControls.ComboIconsList",
+            "Alesys.CommonControls.CommonFunctions",
+            "Alesys.CommonControls.DxAreaSharp",
+            "Alesys.CommonControls.JoystickManager",
+            "Alesys.CommonControls.ModelForms",
+            "Alesys.CommonControls.PerformanceMonitor",
+            "Alesys.CommonControls.PopupCallNotification",
+            "Alesys.CommonControls.ProgressRings",
+            "Alesys.CommonControls.PtzControlPanel",
+            "Alesys.CommonControls.Timeline",
+            "Alesys.CommonControls.TimelineVideo",
+            "Alesys.CommonControls.VideoLive",
+            "Alesys.CommonControls.Videowall",
+            "Alesys.CommonControls.VideowallContainer",
+            "Alesys.CommonControls.Webcam",
+            "Alesys.CommonControls.WeekPlanPro"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Extensibility.PluginCommands": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.PluginCommands",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginCommands\\Alesys.Extensibility.PluginCommands.csproj",
+              "File": "*.Extensibility.PluginCommands.dll"
+            },
+            "Replace-Extensibility.Ui": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui\\Alesys.Extensibility.Ui.csproj",
+              "File": "*.Extensibility.Ui.dll"
+            },
+            "Replace-Extensibility.Ui.PluginInterfaces": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.PluginInterfaces",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginInterfaces\\Alesys.Extensibility.Ui.PluginInterfaces.csproj",
+              "File": "*.Extensibility.Ui.PluginInterfaces.dll"
+            },
+            "Replace-Extensibility.Ui.Resources": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.Resources",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui.Resources\\Alesys.Extensibility.Ui.Resources.csproj",
+              "File": "*.Extensibility.Ui.Resources.dll"
+            },
+            "Replace-Extensibility.Ui.VideowallItem": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.VideowallItem",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.VideowallItem\\Alesys.Extensibility.Ui.VideowallItem.csproj",
+              "File": "*.Extensibility.Ui.VideowallItem.dll"
+            }
+          }
+        },
+        {
+          "Order": 100,
+          "Name": "Insert-Reference",
+          "Type": "Insert-Reference",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.Videowall"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Insert-Extensibility.Ui": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui\\Alesys.Extensibility.Ui.csproj",
+              "File": "*.Extensibility.Ui.dll"
+            }
+          }
+        },
+        {
+          "Order": 999,
+          "Name": "Build",
+          "Type": "Build",
+          "Description": null,
+          "ProjectNames": [
+            "Alesys.CommonControls.AudioEngine",
+            "Alesys.CommonControls.Calendar",
+            "Alesys.CommonControls.CommonUI",
+            "Alesys.CommonControls.ComboIconsList",
+            "Alesys.CommonControls.CommonFunctions",
+            "Alesys.CommonControls.DxAreaSharp",
+            "Alesys.CommonControls.JoystickManager",
+            "Alesys.CommonControls.ModelForms",
+            "Alesys.CommonControls.PerformanceMonitor",
+            "Alesys.CommonControls.PopupCallNotification",
+            "Alesys.CommonControls.ProgressRings",
+            "Alesys.CommonControls.PtzControlPanel",
+            "Alesys.CommonControls.Timeline",
+            "Alesys.CommonControls.TimelineVideo",
+            "Alesys.CommonControls.VideoLive",
+            "Alesys.CommonControls.Videowall",
+            "Alesys.CommonControls.VideowallContainer",
+            "Alesys.CommonControls.Webcam",
+            "Alesys.CommonControls.WeekPlanPro"
+          ],
+          "SolutionFile": null,
+          "Actions": {}
+        }
+      ]
+    },
+    {
+      "Name": "Integro",
+      "SolutionFilename": "Integro.sln",
+      "SourcePath": "IntegroClient",
+      "OutputPath": "IntegroClient",
+      "Compression": 0,
+      "Enabled": true,
+      "ClearDestination": true,
+      "Commands": [
+        {
+          "Order": 2,
+          "Name": "Replace",
+          "Type": "Replace",
+          "Description": null,
+          "ProjectNames": [
+            "ScCustomCommands",
+            "ScManufacturerFeatures_Generic",
+            "Integro.Common",
+            "Integro.Commons",
+            "Integro.DataAccess",
+            "IntegroClient",
+            "IntegroConfigTool"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Assembly": {
+              "Order": 1,
+              "Source": "SecurityControl",
+              "SourceFallback": "",
+              "Value": "ZSupervisor",
+              "File": "*.cs"
+            },
+            "Replace-Assembly-2": {
+              "Order": 1,
+              "Source": "Integro",
+              "SourceFallback": "",
+              "Value": "ZSupervisor",
+              "File": "*.cs"
+            },
+            "Replace-Assembly-3": {
+              "Order": 1,
+              "Source": "Alesys",
+              "SourceFallback": "",
+              "Value": "ZSupervisor",
+              "File": "*.cs"
+            },
+            "Replace-Alesys": {
+              "Order": 2,
+              "Source": "\"Alesys",
+              "SourceFallback": "",
+              "Value": "\"ZSupervisor",
+              "File": ""
+            }
+          }
+        },
+        {
+          "Order": 20,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "ScCustomCommands",
+            "ScManufacturerFeatures_Generic",
+            "Integro.Common",
+            "Integro.Commons",
+            "Integro.DataAccess",
+            "IntegroClient",
+            "IntegroConfigTool"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Authors": {
+              "Order": 1,
+              "Source": "Authors",
+              "SourceFallback": "",
+              "Value": "Zucchetti",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCompany": {
+              "Order": 2,
+              "Source": "AssemblyCompany",
+              "SourceFallback": "Company",
+              "Value": "Zucchetti",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyCopyright": {
+              "Order": 3,
+              "Source": "AssemblyCopyright",
+              "SourceFallback": "Copyright",
+              "Value": "ZSupervisor © 2022 Zucchetti",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 21,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Integro.Commons"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 5,
+              "Source": "AssemblyName",
+              "SourceFallback": "",
+              "Value": "ZSupervisor.Commons",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyTitle": {
+              "Order": 1,
+              "Source": "AssemblyTitle",
+              "SourceFallback": "",
+              "Value": "ZSupervisor.Commons",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-Product": {
+              "Order": 1,
+              "Source": "Product",
+              "SourceFallback": "",
+              "Value": "ZSupervisor.Commons",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 0,
+              "Source": "RootNamespace",
+              "SourceFallback": "",
+              "Value": "ZSupervisor.Commons",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 22,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Integro.DataAccess"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 5,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.DataAccess",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 0,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.DataAccess",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 23,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "Integro.Common"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-AssemblyName": {
+              "Order": 5,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo.Common",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 0,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo.Common",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 25,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "IntegroClient"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-StartupObject": {
+              "Order": 4,
+              "Source": "StartupObject",
+              "SourceFallback": null,
+              "Value": "Tappo.Program",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyName": {
+              "Order": 5,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 0,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "Tappo",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 26,
+          "Name": "Replace-Properties",
+          "Type": "Replace-Properties",
+          "Description": null,
+          "ProjectNames": [
+            "IntegroConfigTool"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-StartupObject": {
+              "Order": 1,
+              "Source": "StartupObject",
+              "SourceFallback": null,
+              "Value": "TappoConfigTool.Program",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-AssemblyName": {
+              "Order": 2,
+              "Source": "AssemblyName",
+              "SourceFallback": null,
+              "Value": "TappoConfigTool",
+              "File": "AssemblyInfo.cs"
+            },
+            "Replace-RootNamespace": {
+              "Order": 3,
+              "Source": "RootNamespace",
+              "SourceFallback": null,
+              "Value": "TappoConfigTool",
+              "File": "AssemblyInfo.cs"
+            }
+          }
+        },
+        {
+          "Order": 99,
+          "Name": "Replace-References",
+          "Type": "Replace-References",
+          "Description": null,
+          "ProjectNames": [
+            "ScCustomCommands",
+            "ScManufacturerFeatures_Generic",
+            "Integro.Commons",
+            "Integro.DataAccess",
+            "IntegroClient",
+            "IntegroConfigTool"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Replace-Extensibility.PluginMessages": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.PluginMessages",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginMessages\\Alesys.Extensibility.PluginMessages.csproj",
+              "File": "*.Extensibility.PluginMessages.dll"
+            },
+            "Replace-Extensibility.PluginCommands": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.PluginCommands",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginCommands\\Alesys.Extensibility.PluginCommands.csproj",
+              "File": "*.Extensibility.PluginCommands.dll"
+            },
+            "Replace-Extensibility.Ui": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui\\Alesys.Extensibility.Ui.csproj",
+              "File": "*.Extensibility.Ui.dll"
+            },
+            "Replace-Extensibility.Ui.PluginInterfaces": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.PluginInterfaces",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginInterfaces\\Alesys.Extensibility.Ui.PluginInterfaces.csproj",
+              "File": "*.Extensibility.Ui.PluginInterfaces.dll"
+            },
+            "Replace-Extensibility.Ui.Resources": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.Resources",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui.Resources\\Alesys.Extensibility.Ui.Resources.csproj",
+              "File": "*.Extensibility.Ui.Resources.dll"
+            },
+            "Replace-Extensibility.Ui.VideowallItem": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.VideowallItem",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.VideowallItem\\Alesys.Extensibility.Ui.VideowallItem.csproj",
+              "File": "*.Extensibility.Ui.VideowallItem.dll"
+            },
+            "Replace-CommonControls.AudioEngine": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.AudioEngine",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.AudioEngine\\Alesys.CommonControls.AudioEngine.csproj",
+              "File": "*.CommonControls.AudioEngine.dll"
+            },
+            "Replace-CommonControls.Calendar": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.Calendar",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.Calendar\\Alesys.CommonControls.Calendar.csproj",
+              "File": "*.CommonControls.Calendar.dll"
+            },
+            "Replace-CommonControls.CommonUI": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.CommonUI",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.CommonUI\\Alesys.CommonControls.CommonUI.csproj",
+              "File": "*.CommonControls.CommonUI.dll"
+            },
+            "Replace-CommonControls.DxAreaSharp": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.DxAreaSharp",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.DxAreaSharp\\Alesys.CommonControls.DxAreaSharp.csproj",
+              "File": "*.CommonControls.DxAreaSharp.dll"
+            },
+            "Replace-CommonControls.JoystickManager": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.JoystickManager",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.JoystickManager\\Alesys.CommonControls.JoystickManager.csproj",
+              "File": "*.CommonControls.JoystickManager.dll"
+            },
+            "Replace-CommonControls.ModelForms": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.ModelForms",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.ModelForms\\Alesys.CommonControls.ModelForms.csproj",
+              "File": "*.CommonControls.ModelForms.dll"
+            },
+            "Replace-CommonControls.PerformanceMonitor": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.PerformanceMonitor",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.PerformanceMonitor\\Alesys.CommonControls.PerformanceMonitor.csproj",
+              "File": "*.CommonControls.PerformanceMonitor.dll"
+            },
+            "Replace-CommonControls.ProgressRings": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.ProgressRings",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.ProgressRings\\Alesys.CommonControls.ProgressRings.csproj",
+              "File": "*.CommonControls.ProgressRings.dll"
+            },
+            "Replace-CommonControls.PtzControlPanel": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.PtzControlPanel",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.PtzControlPanel\\Alesys.CommonControls.PtzControlPanel.csproj",
+              "File": "*.CommonControls.PtzControlPanel.dll"
+            },
+            "Replace-CommonControls.Timeline": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.Timeline",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.Timeline\\Alesys.CommonControls.Timeline.csproj",
+              "File": "*.CommonControls.Timeline.dll"
+            },
+            "Replace-CommonControls.Videowall": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.Videowall",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.Videowall\\Alesys.CommonControls.Videowall.csproj",
+              "File": "*.CommonControls.Videowall.dll"
+            },
+            "Replace-CommonControls.WeekPlanPro": {
+              "Order": 0,
+              "Source": "Alesys.CommonControls.WeekPlanPro",
+              "SourceFallback": null,
+              "Value": "AlesysCommonControls\\Alesys.CommonControls.WeekPlanPro\\Alesys.CommonControls.WeekPlanPro.csproj",
+              "File": "*.CommonControls.WeekPlanPro.dll"
+            },
+            "Replace-Integro.Common": {
+              "Order": 0,
+              "Source": "Integro.Common",
+              "SourceFallback": null,
+              "Value": "Integro\\Integro.Common\\Integro.Common.csproj",
+              "File": "*.Common.dll"
+            },
+            "Replace-Integro.DataAccess": {
+              "Order": 0,
+              "Source": "Integro.DataAccess",
+              "SourceFallback": null,
+              "Value": "Integro\\Integro.DataAccess\\Integro.DataAccess.csproj",
+              "File": "*.Common.dll"
+            },
+            "Replace-Integro.Commons": {
+              "Order": 0,
+              "Source": "Integro.Commons",
+              "SourceFallback": null,
+              "Value": "Integro\\SecurityControl.Commons\\Integro.Commons.csproj",
+              "File": "*.Commons.dll"
+            }
+          }
+        },
+        {
+          "Order": 100,
+          "Name": "Insert-Reference",
+          "Type": "Insert-Reference",
+          "Description": null,
+          "ProjectNames": [
+            "IntegroClient"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Insert-Extensibility.Ui": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.Ui\\Alesys.Extensibility.Ui.csproj",
+              "File": "*.Extensibility.Ui.dll"
+            },
+            "Replace-Extensibility.PluginMessages": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.PluginMessages",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.PluginMessages\\Alesys.Extensibility.PluginMessages.csproj",
+              "File": "*.Extensibility.PluginMessages.dll"
+            },
+            "Insert-Extensibility.Ui.VideowallItem": {
+              "Order": 0,
+              "Source": "Alesys.Extensibility.Ui.VideowallItem",
+              "SourceFallback": null,
+              "Value": "Alesys.Extensibility\\Alesys.Extensibility.VideowallItem\\Alesys.Extensibility.Ui.VideowallItem.csproj",
+              "File": "*.Extensibility.Ui.VideowallItem.dll"
+            }
+          }
+        },
+        {
+          "Order": 999,
+          "Name": "Build",
+          "Type": "Build",
+          "Description": null,
+          "ProjectNames": [
+            "ScCustomCommands",
+            "ScManufacturerFeatures_Generic",
+            "Integro.Common",
+            "Integro.Commons",
+            "Integro.DataAccess",
+            "IntegroClient",
+            "IntegroConfigTool"
+          ],
+          "SolutionFile": null,
+          "Actions": {}
+        },
+        {
+          "Order": 1000,
+          "Name": "CopyTo",
+          "Type": "Copy",
+          "Description": null,
+          "ProjectNames": [
+            "IntegroClient",
+            "IntegroConfigTool"
+          ],
+          "SolutionFile": null,
+          "Actions": {
+            "Copy-To": {
+              "Order": 0,
+              "Source": null,
+              "SourceFallback": null,
+              "Value": null,
+              "File": "*.exe"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

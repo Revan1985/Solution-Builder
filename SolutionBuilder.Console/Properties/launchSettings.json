@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Test su Config.json": {
+      "commandName": "Project"
+    }
+  }
+}
