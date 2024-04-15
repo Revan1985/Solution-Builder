@@ -4,7 +4,7 @@ using SolutionBuilder.Model;
 using Spectre.Console;
 
 MSBuildLocator.RegisterDefaults();
-string? configPath = args.FirstOrDefault(o => o.StartsWith("-F"))?.Substring(2);
+string? configPath = args.FirstOrDefault(o => o.StartsWith("-F"))?[2..];
 
 
 if (!SolutionConfiguration.TryParse(File.ReadAllText(configPath ?? "Configuration.json"), out SolutionConfiguration? configuration))
@@ -22,12 +22,12 @@ foreach (Installation installation in configuration.Installations)
     Progress? progress = AnsiConsole.Progress()
                 .AutoClear(true)
                 .HideCompleted(true)
-                .Columns(new ProgressColumn[]
-                {
+                .Columns(
+                [
                     new TaskDescriptionColumn(),
                     new ProgressBarColumn(),
                     new PercentageColumn(),
-                });
+                ]);
 
     installation.Progress += (sender, e) => AnsiConsole.MarkupLine(e.Text);
     AnsiConsole.MarkupLine($"\t[green]{Markup.Escape($"[{installation.Name}]")}[/]");

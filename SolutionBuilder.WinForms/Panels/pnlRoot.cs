@@ -155,7 +155,7 @@ namespace SolutionBuilder.WinForms.Panels
         {
 
 
-            DialogResult result = MessageBox.Show("Remove selected item?", frmMain.AppName,  MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Remove selected item?", FrmMain.AppName,  MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result== DialogResult.Yes)
             {

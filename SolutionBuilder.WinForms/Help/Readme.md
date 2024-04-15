@@ -1,4 +1,4 @@
-﻿## Alesys Rebrandizer v1.0
+﻿## Rebrandizer v1.1
 
 
 ### JSON file structure

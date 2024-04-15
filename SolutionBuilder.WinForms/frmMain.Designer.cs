@@ -1,6 +1,6 @@
 ﻿namespace SolutionBuilder.WinForms
 {
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +100,7 @@
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -109,7 +109,7 @@
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.openToolStripMenuItem.Text = "&Open...";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -118,7 +118,7 @@
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.saveToolStripMenuItem.Text = "&Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -126,7 +126,7 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.saveAsToolStripMenuItem.Text = "Save as...";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -140,7 +140,7 @@
             this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.refreshToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // reloadFileToolStripMenuItem
             // 
@@ -149,7 +149,7 @@
             this.reloadFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.reloadFileToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.reloadFileToolStripMenuItem.Text = "Reload file";
-            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.reloadFileToolStripMenuItem_Click);
+            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.ReloadFileToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
@@ -157,7 +157,7 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.closeToolStripMenuItem.Text = "Close file";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -186,7 +186,7 @@
             this.openSourceFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.openSourceFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.openSourceFileToolStripMenuItem.Text = "Open source file";
-            this.openSourceFileToolStripMenuItem.Click += new System.EventHandler(this.openSourceFileToolStripMenuItem_Click);
+            this.openSourceFileToolStripMenuItem.Click += new System.EventHandler(this.OpenSourceFileToolStripMenuItem_Click);
             // 
             // launchRefactoringToolStripMenuItem
             // 
@@ -194,7 +194,7 @@
             this.launchRefactoringToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
             this.launchRefactoringToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.launchRefactoringToolStripMenuItem.Text = "Launch refactoring";
-            this.launchRefactoringToolStripMenuItem.Click += new System.EventHandler(this.launchRefactoringToolStripMenuItem_Click);
+            this.launchRefactoringToolStripMenuItem.Click += new System.EventHandler(this.LaunchRefactoringToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -203,14 +203,14 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(24, 20);
             this.helpToolStripMenuItem.Text = "?";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // readMetxtToolStripMenuItem
             // 
             this.readMetxtToolStripMenuItem.Name = "readMetxtToolStripMenuItem";
             this.readMetxtToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.readMetxtToolStripMenuItem.Text = "ReadMe.txt";
-            this.readMetxtToolStripMenuItem.Click += new System.EventHandler(this.readMetxtToolStripMenuItem_Click);
+            this.readMetxtToolStripMenuItem.Click += new System.EventHandler(this.ReadMetxtToolStripMenuItem_Click);
             // 
             // TreeConfiguration
             // 
@@ -276,7 +276,7 @@
             this.ctlEmpty1.Name = "ctlEmpty1";
             this.ctlEmpty1.Size = new System.Drawing.Size(780, 509);
             this.ctlEmpty1.TabIndex = 5;
-            this.ctlEmpty1.OpenFileRequest += new System.EventHandler(this.ctlEmpty1_OpenFileRequest);
+            this.ctlEmpty1.OpenFileRequest += new System.EventHandler(this.CtlEmpty1_OpenFileRequest);
             // 
             // mnuInstallation
             // 
@@ -294,14 +294,14 @@
             this.enableToolStripMenuItem.Name = "enableToolStripMenuItem";
             this.enableToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.enableToolStripMenuItem.Text = "Enable";
-            this.enableToolStripMenuItem.Click += new System.EventHandler(this.enableToolStripMenuItem_Click);
+            this.enableToolStripMenuItem.Click += new System.EventHandler(this.EnableToolStripMenuItem_Click);
             // 
             // disableToolStripMenuItem
             // 
             this.disableToolStripMenuItem.Name = "disableToolStripMenuItem";
             this.disableToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.disableToolStripMenuItem.Text = "Disable";
-            this.disableToolStripMenuItem.Click += new System.EventHandler(this.disableToolStripMenuItem_Click);
+            this.disableToolStripMenuItem.Click += new System.EventHandler(this.DisableToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -313,14 +313,14 @@
             this.excludeEverythingExceptThisToolStripMenuItem.Name = "excludeEverythingExceptThisToolStripMenuItem";
             this.excludeEverythingExceptThisToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.excludeEverythingExceptThisToolStripMenuItem.Text = "Exclude everything except this";
-            this.excludeEverythingExceptThisToolStripMenuItem.Click += new System.EventHandler(this.excludeEverythingExceptThisToolStripMenuItem_Click);
+            this.excludeEverythingExceptThisToolStripMenuItem.Click += new System.EventHandler(this.ExcludeEverythingExceptThisToolStripMenuItem_Click);
             // 
             // includeEverthingExceptThisToolStripMenuItem
             // 
             this.includeEverthingExceptThisToolStripMenuItem.Name = "includeEverthingExceptThisToolStripMenuItem";
             this.includeEverthingExceptThisToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.includeEverthingExceptThisToolStripMenuItem.Text = "Include everthing except this";
-            this.includeEverthingExceptThisToolStripMenuItem.Click += new System.EventHandler(this.includeEverthingExceptThisToolStripMenuItem_Click);
+            this.includeEverthingExceptThisToolStripMenuItem.Click += new System.EventHandler(this.IncludeEverthingExceptThisToolStripMenuItem_Click);
             // 
             // frmMain
             // 

@@ -6,7 +6,7 @@ namespace SolutionBuilder.Model
 {
     public class CommandCopy : Command
     {
-        private static readonly Dictionary<string, Project> ProjectsPath = new();
+        private static readonly Dictionary<string, Project> ProjectsPath = [];
 
         public override bool Execute(SolutionFile solution, string basePath, Spectre.Console.Progress? progress = null)
         {
@@ -19,8 +19,10 @@ namespace SolutionBuilder.Model
                 {
                     if (!ProjectsPath.TryGetValue(projectInSolution.ProjectName, out project))
                     {
-                        ProjectOptions options = new();
-                        options.LoadSettings = ProjectLoadSettings.IgnoreMissingImports;
+                        ProjectOptions options = new()
+                        {
+                            LoadSettings = ProjectLoadSettings.IgnoreMissingImports
+                        };
 
                         project = Project.FromFile(projectInSolution.AbsolutePath, options);
                         ProjectsPath.Add(projectInSolution.ProjectName, project);

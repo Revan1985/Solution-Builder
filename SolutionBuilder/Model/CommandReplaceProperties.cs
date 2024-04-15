@@ -10,7 +10,7 @@ namespace SolutionBuilder.Model
         static readonly string AssemblyFormatReader = "\\[assembly[:]\\s*{0}\\(\"(?<ReplaceValue>.*)\"\\)\\]";
         static readonly string AssemblyFormatWriter = "[assembly: {0}(\"{1}\")]";
 
-        static readonly Dictionary<string, Project> ProjectsPath = new();
+        static readonly Dictionary<string, Project> ProjectsPath = [];
         public override bool Execute(SolutionFile solution, string _, Spectre.Console.Progress? progress = null)
         {
             //Console.WriteLine("Premi un tasto per continuare:");
@@ -25,8 +25,10 @@ namespace SolutionBuilder.Model
                 {
                     if (!ProjectsPath.TryGetValue(projectInSolution.ProjectName, out project))
                     {
-                        ProjectOptions options = new();
-                        options.LoadSettings = ProjectLoadSettings.IgnoreMissingImports;
+                        ProjectOptions options = new()
+                        {
+                            LoadSettings = ProjectLoadSettings.IgnoreMissingImports
+                        };
                         project = Project.FromFile(projectInSolution.AbsolutePath, options);
                         ProjectsPath.Add(projectInSolution.ProjectName, project);
                     }

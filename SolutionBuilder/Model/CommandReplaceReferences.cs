@@ -6,7 +6,7 @@ namespace SolutionBuilder.Model
 {
     public class CommandReplaceReferences : Command
     {
-        static readonly Dictionary<string, Project> ProjectsPath = new();
+        static readonly Dictionary<string, Project> ProjectsPath = [];
 
         public override bool Execute(SolutionFile solution, string basePath, Spectre.Console.Progress? progress = null)
         {
@@ -21,8 +21,10 @@ namespace SolutionBuilder.Model
                 {
                     if (!ProjectsPath.TryGetValue(projectInSolution.ProjectName, out project))
                     {
-                        ProjectOptions options = new();
-                        options.LoadSettings = ProjectLoadSettings.IgnoreMissingImports;
+                        ProjectOptions options = new()
+                        {
+                            LoadSettings = ProjectLoadSettings.IgnoreMissingImports
+                        };
                         project = Project.FromFile(projectInSolution.AbsolutePath, options);
                         ProjectsPath.Add(projectInSolution.ProjectName, project);
                     }
@@ -70,11 +72,11 @@ namespace SolutionBuilder.Model
                         }
                         else
                         {
-                            project.AddItem("Reference", Path.GetFileNameWithoutExtension(complete), new KeyValuePair<string, string>[]
-                            {
+                            project.AddItem("Reference", Path.GetFileNameWithoutExtension(complete),
+                            [
                                 new("Include", Path.GetFileName(complete)),
                                 new("HintPath",complete)
-                            });
+                            ]);
                         }
                     }
                     else if (references.Any(i => i.UnevaluatedInclude.Contains(source)))
@@ -92,11 +94,11 @@ namespace SolutionBuilder.Model
                             }
                             else
                             {
-                                project.AddItem("Reference", Path.GetFileNameWithoutExtension(complete), new KeyValuePair<string, string>[]
-                                {
+                                project.AddItem("Reference", Path.GetFileNameWithoutExtension(complete),
+                                [
                                     new("Include", Path.GetFileName(complete)),
                                     new("HintPath",complete)
-                                });
+                                ]);
                             }
                         }
                     }

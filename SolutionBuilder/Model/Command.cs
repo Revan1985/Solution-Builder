@@ -11,10 +11,10 @@ namespace SolutionBuilder.Model
         public string? Name { get; set; }
         public string Type { get; set; } = string.Empty;
         public string? Description { get; set; }
-        public List<string> ProjectNames { get; set; } = new List<string>();
+        public List<string> ProjectNames { get; set; } = [];
         public string? SolutionFile { get; set; }
 
-        public Dictionary<string, CommandAction> Actions { get; set; } = new();
+        public Dictionary<string, CommandAction> Actions { get; set; } = [];
 
         public event EventHandler<CommandEventArgs>? CommandExecution;
 
@@ -24,14 +24,9 @@ namespace SolutionBuilder.Model
         protected virtual void OnCommandExecution(CommandEventArgs e) => CommandExecution?.Invoke(this, e);
     }
 
-    public class CommandEventArgs : EventArgs
+    public class CommandEventArgs(string text) : EventArgs
     {
-        public string Text { get; init; }
-
-        public CommandEventArgs(string text)
-        {
-            Text = text;
-        }
+        public string Text { get; init; } = text;
     }
 
     public record class CommandAction(int Order, string Source, string SourceFallback, string Value, string? File = "*.cs");

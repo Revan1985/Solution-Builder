@@ -9,29 +9,29 @@ namespace SolutionBuilder.Model
     {
         protected internal SolutionConfiguration _parent = new();
 
-        [JsonProperty("Name", Order = 0, Required = Required.Always)]
+        [JsonProperty(nameof(Name), Order = 0, Required = Required.Always)]
         public string Name { get; set; } = string.Empty;
 
-        [JsonProperty("SolutionFilename", Order = 1, Required = Required.Always)]
+        [JsonProperty(nameof(SolutionFilename), Order = 1, Required = Required.Always)]
         public string SolutionFilename { get; set; } = string.Empty;
 
-        [JsonProperty("SourcePath", Order = 2, Required = Required.DisallowNull)]
+        [JsonProperty(nameof(SourcePath), Order = 2, Required = Required.DisallowNull)]
         public string SourcePath { get; set; } = string.Empty;
 
-        [JsonProperty("OutputPath", Order = 3, Required = Required.DisallowNull)]
+        [JsonProperty(nameof(OutputPath), Order = 3, Required = Required.DisallowNull)]
         public string OutputPath { get; set; } = string.Empty;
 
-        [JsonProperty("Compression", Order = 4, Required = Required.DisallowNull)]
+        [JsonProperty(nameof(Compression), Order = 4, Required = Required.DisallowNull)]
         public int Compression { get; set; } = 0;
-        [JsonProperty("Enabled", Order = 5, Required = Required.Always)]
+        [JsonProperty(nameof(Enabled), Order = 5, Required = Required.Always)]
         public bool Enabled { get; set; } = true;
 
-        [JsonProperty("ClearDestination", Order = 6, Required = Required.Always)]
+        [JsonProperty(nameof(ClearDestination), Order = 6, Required = Required.Always)]
         public bool ClearDestination { get; set; } = false;
 
-        [JsonProperty("Commands", Order = 7)]
+        [JsonProperty(nameof(Commands), Order = 7)]
         [JsonConverter(typeof(CommandConverter))]
-        public List<Command> Commands { get; set; } = new();
+        public List<Command> Commands { get; set; } = [];
 
         public event EventHandler<ProgressEventArgs>? Progress;
 
@@ -162,7 +162,7 @@ namespace SolutionBuilder.Model
 
             if (sourcePath.StartsWith("C:\\Windows")) { return; }
 
-            if (directory.Name.StartsWith(".")) { return; }
+            if (directory.Name.StartsWith('.')) { return; }
             if (directory.Name.StartsWith("bin")) { return; }
             if (directory.Name.StartsWith("obj")) { return; }
 
@@ -225,13 +225,8 @@ namespace SolutionBuilder.Model
             task?.StopTask();
         }
     }
-    public class ProgressEventArgs : EventArgs
+    public class ProgressEventArgs(string text) : EventArgs
     {
-        public string Text { get; init; }
-
-        public ProgressEventArgs(string text)
-        {
-            Text = text;
-        }
+        public string Text { get; init; } = text;
     }
 }

@@ -5,13 +5,13 @@ namespace SolutionBuilder.Model
 {
     public sealed class SolutionConfiguration
     {
-        [JsonProperty("SourcePath", Order = 0, Required = Required.DisallowNull)]
+        [JsonProperty(nameof(SourcePath), Order = 0, Required = Required.DisallowNull)]
         public string SourcePath { get; set; } = string.Empty;
 
-        [JsonProperty("OutputPath", Order = 1, Required = Required.DisallowNull)]
+        [JsonProperty(nameof(OutputPath), Order = 1, Required = Required.DisallowNull)]
         public string OutputPath { get; set; } = string.Empty;
 
-        [JsonProperty("TemporaryPath", Order = 2, Required = Required.DisallowNull)]
+        [JsonProperty(nameof(TemporaryPath), Order = 2, Required = Required.DisallowNull)]
         public string TemporaryPath { get; set; } = string.Empty;
 
         [JsonProperty("BuildConfiguration", Order = 3, Required = Required.DisallowNull)]
@@ -21,12 +21,12 @@ namespace SolutionBuilder.Model
         public string Platform { get; set; } = "AnyCpu";
 
 
-        [JsonProperty("Configuration", Order = 2, Required = Required.Always)]
+        [JsonProperty(nameof(Configuration), Order = 2, Required = Required.Always)]
         public List<Installation> Installations
         {
             get;
             set;
-        } = new ();
+        } = [];
 
         public static bool TryParse(string json, out SolutionConfiguration? configuration)
         {

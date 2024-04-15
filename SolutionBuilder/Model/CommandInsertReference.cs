@@ -6,7 +6,7 @@ namespace SolutionBuilder.Model
 {
     public class CommandInsertReference : Command
     {
-        static readonly Dictionary<string, Project> ProjectsPath = new();
+        static readonly Dictionary<string, Project> ProjectsPath = [];
         public override bool Execute(SolutionFile solution, string basePath, Spectre.Console.Progress? progress = null)
         {
             //Console.WriteLine("Premi un tasto per continuare:");
@@ -20,8 +20,10 @@ namespace SolutionBuilder.Model
                 {
                     if (!ProjectsPath.TryGetValue(projectInSolution.ProjectName, out project))
                     {
-                        ProjectOptions options = new();
-                        options.LoadSettings = ProjectLoadSettings.IgnoreMissingImports;
+                        ProjectOptions options = new()
+                        {
+                            LoadSettings = ProjectLoadSettings.IgnoreMissingImports
+                        };
                         project = Project.FromFile(projectInSolution.AbsolutePath, options);
                         ProjectsPath.Add(projectInSolution.ProjectName, project);
                     }
@@ -62,11 +64,11 @@ namespace SolutionBuilder.Model
                     string? complete = Directory.GetFiles(path!, file!, SearchOption.AllDirectories).FirstOrDefault();
 
                     if (string.IsNullOrEmpty(complete)) { throw new InvalidOperationException(); }
-                    project.AddItem("Reference", Path.GetFileNameWithoutExtension(complete), new KeyValuePair<string, string>[]
-                    {
+                    project.AddItem("Reference", Path.GetFileNameWithoutExtension(complete),
+                    [
                         new("Include", Path.GetFileName(complete)),
                         new("HintPath",complete)
-                    });
+                    ]);
                 }
 
                 project!.Save();

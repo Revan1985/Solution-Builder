@@ -3,26 +3,22 @@ using Spectre.Console.Rendering;
 
 namespace SolutionBuilder.Console.Shared;
 
-internal sealed class ColorBox : Renderable
+internal sealed class ColorBox(int height) : Renderable
 {
-    private readonly int _height;
-    private int? _width;
+    private readonly int _height = height;
+    private readonly int? _width;
 
-    public ColorBox(int height)
-    {
-        _height = height;
-    }
     public ColorBox(int width, int height) : this(height)
     {
         _width = width;
     }
 
-    protected override Measurement Measure(RenderContext context, int maxWidth)
+    protected override Measurement Measure(RenderOptions options, int maxWidth)
     {
         return new(1, GetWidth(maxWidth));
     }
 
-    protected override IEnumerable<Segment> Render(RenderContext context, int maxWidth)
+    protected override IEnumerable<Segment> Render(RenderOptions options, int maxWidth)
     {
         maxWidth = GetWidth(maxWidth);
         for (int y = 0; y < _height; ++y)

@@ -92,7 +92,7 @@ namespace SolutionBuilder.WinForms.Panels
 
         private void cmdSolutionFilename_Click(object sender, EventArgs e)
         {
-            string mainPath = frmMain.Configuration?.SourcePath ?? "";
+            string mainPath = FrmMain.Configuration?.SourcePath ?? "";
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Solution file (*.sln)|*.sln";
             ofd.InitialDirectory = mainPath;
@@ -153,14 +153,14 @@ namespace SolutionBuilder.WinForms.Panels
 
         private void cmdOutputPath_Click(object sender, EventArgs e)
         {
-            string mainPath = frmMain.Configuration?.OutputPath ?? "";
+            string mainPath = FrmMain.Configuration?.OutputPath ?? "";
             OpenFolder(mainPath, txtOutputPath.Text, txtOutputPath);
 
         }
 
         private void cmdSourcePath_Click(object sender, EventArgs e)
         {
-            string mainPath = frmMain.Configuration?.SourcePath ?? "";
+            string mainPath = FrmMain.Configuration?.SourcePath ?? "";
             OpenFolder(mainPath, txtSourcePath.Text, txtSourcePath);
         }
 

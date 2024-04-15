@@ -7,9 +7,9 @@ namespace SolutionBuilder.Model
 {
     public class CommandBuild : Command
     {
-        public Dictionary<string, string> Options { get; set; } = new();
+        public Dictionary<string, string> Options { get; set; } = [];
        
-        public override bool Execute(SolutionFile solution, string _, Spectre.Console.Progress? progress = null)
+        public override bool Execute(SolutionFile solution, string _, Progress? progress = null)
         {
             foreach (string ProjectName in ProjectNames)
             {
@@ -19,8 +19,10 @@ namespace SolutionBuilder.Model
 
                 StringWriter writer = new();
 
-                AnalyzerManagerOptions options = new();
-                options.LogWriter = writer;
+                AnalyzerManagerOptions options = new()
+                {
+                    LogWriter = writer
+                };
 
                 AnalyzerManager manager = new(SolutionFile, options);
                 

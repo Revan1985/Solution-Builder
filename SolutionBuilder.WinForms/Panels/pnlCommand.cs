@@ -64,7 +64,7 @@ namespace SolutionBuilder.WinForms.Panels
         {
             if (_installation != null)
             {
-                string mainPath = frmMain.Configuration?.SourcePath ?? "";
+                string mainPath = FrmMain.Configuration?.SourcePath ?? "";
                 string sourcePath = _installation.SourcePath;
                 string solution = _installation.SolutionFilename;
                 string solutionPath = Path.Combine(mainPath, sourcePath, solution);

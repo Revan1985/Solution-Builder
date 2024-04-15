@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using SolutionBuilder.Model;
 using SolutionBuilder.WinForms.Panels;
 using System.Diagnostics;
+using System.Text;
 
 namespace SolutionBuilder.WinForms
 {
-    public enum enumNodeType
+    public enum NodeType
     {
         Root,
         Installation,
@@ -20,7 +21,7 @@ namespace SolutionBuilder.WinForms
 
     
 
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
         public static string AppName { get; set; } = "Alesys Rebrandizer";
 
@@ -31,24 +32,21 @@ namespace SolutionBuilder.WinForms
         private string? _currentFilename = null;
 
 
-        private static Model.SolutionConfiguration? _configuration = null;
-        public static Model.SolutionConfiguration? Configuration { 
-            get=> _configuration; 
-            set
-            {
-                _configuration = value;
-            } 
+        private static SolutionConfiguration? _configuration = null;
+        public static SolutionConfiguration? Configuration {
+            get => _configuration;
+            set => _configuration = value;
         }
 
-        
-        public frmMain()
+
+        public FrmMain()
         {
             InitializeComponent();
 
             ctlEmpty1.Dock = DockStyle.Fill;
             ctlEmpty1.BringToFront();
 
-            this.FormClosed += FrmMain_FormClosed;
+            FormClosed += FrmMain_FormClosed;
 
             var lastFilename = Properties.Settings.Default.LastFileOpened;
 
@@ -61,11 +59,6 @@ namespace SolutionBuilder.WinForms
 
             TreeConfiguration.HideSelection = false;
             TreeConfiguration.FullRowSelect = true;
-        }
-
-        private void LoadSettings()
-        {
-
         }
 
         private void FrmMain_FormClosed(object? sender, FormClosedEventArgs e)
@@ -92,17 +85,25 @@ namespace SolutionBuilder.WinForms
             }
             else
             {
-                Text = $"{AppName} - {_currentFilename}";
-
-                if (_fileIsChanged)
-                    Text += "*";
+                StringBuilder sb = new(AppName);
+                sb.Append(" - ");
+                sb.Append(_currentFilename);
+                //Text = $"{AppName} - {_currentFilename}";
+                if (_fileIsChanged) 
+                {
+                    sb.Append('*');
+                    //Text += "*"; 
+                }
+                Text = sb.ToString();
             }
         }
 
         private void LaunchOpenFile()
         {
-            OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "Configuration (json)|*.json";
+            OpenFileDialog openFileDialog = new()
+            {
+                Filter = "Configuration (json)|*.json"
+            };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filename = openFileDialog.FileName;
@@ -110,7 +111,7 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void toolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem menu)
             {
@@ -137,7 +138,7 @@ namespace SolutionBuilder.WinForms
         {
             ctlEmpty1.Hide();
             _currentFilename = filename;
-            this.Text = filename;
+            Text = filename;
             using StreamReader reader = new(filename);
             string json = reader.ReadToEnd();
             if (!Model.SolutionConfiguration.TryParse(json, out _configuration))
@@ -153,8 +154,10 @@ namespace SolutionBuilder.WinForms
 
         private void SaveAs()
         {
-            SaveFileDialog sfd = new();
-            sfd.Filter = "Configuration (json)|*.json";
+            SaveFileDialog sfd = new()
+            {
+                Filter = "Configuration (json)|*.json"
+            };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 Save(sfd.FileName);
@@ -192,22 +195,21 @@ namespace SolutionBuilder.WinForms
 
         private void DrawTree()
         {
-
-
             TreeConfiguration.Nodes.Clear();
             if (_configuration != null)
             {
                 //root
-                NodeRoot root = new NodeRoot();
-                root.ImageKey = "Root";
-                root.SelectedImageKey = "Root";
-                root.Configuration = _configuration;
+                NodeRoot root = new()
+                {
+                    ImageKey = "Root",
+                    SelectedImageKey = "Root",
+                    Configuration = _configuration
+                };
                 TreeConfiguration.Nodes.Add(root);
 
                 //Installations (configuration)
-                NodeInstallation nInstallation;
+                //NodeInstallation nInstallation;
                 
-
                 foreach (var inst in _configuration.Installations)
                 {
                     AddInstallationNode(root, inst);
@@ -220,7 +222,7 @@ namespace SolutionBuilder.WinForms
 
         }
 
-        private void AddCommandNodes (NodeInstallation nInstallation)
+        private static void AddCommandNodes(NodeInstallation nInstallation)
         {
             if (nInstallation.Installation != null && nInstallation.Installation.Commands != null)
             {
@@ -231,10 +233,10 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        public void AddCommandNode(NodeInstallation nInstallation, Command cmd)
+        public static void AddCommandNode(NodeInstallation nInstallation, Command cmd)
         {
             NodeCommand nCommand;
-            NodeAction nAction;
+            //NodeAction nAction;
 
             nCommand = new NodeCommand(cmd);
             nInstallation.Nodes.Add(nCommand);
@@ -254,9 +256,9 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void AddActionNode(NodeCommand nCommand, string key, CommandAction action)
+        private static void AddActionNode(NodeCommand nCommand, string key, CommandAction action)
         {
-            NodeAction nAction = new NodeAction();
+            NodeAction nAction = new();
             nCommand.Nodes.Add(nAction);
             nAction.Name = $"{nodeActionPrefix}@{key}";
             nAction.Key = key;
@@ -278,16 +280,16 @@ namespace SolutionBuilder.WinForms
             {
                 switch (node.NodeType)
                 {
-                    case enumNodeType.Root when node is NodeRoot root:
+                    case NodeType.Root when node is NodeRoot root:
                         ShowPanelRoot(root.Configuration);
                         break;
-                    case enumNodeType.Installation when node is NodeInstallation installation:
+                    case NodeType.Installation when node is NodeInstallation installation:
                         ShowPanelInstallation(installation.Installation);
                         break;
-                    case enumNodeType.Command when (node is NodeCommand command && node.Parent is NodeInstallation nInstallation):
+                    case NodeType.Command when (node is NodeCommand command && node.Parent is NodeInstallation nInstallation):
                         ShowPanelCommand(command.Data, nInstallation.Installation);
                         break;
-                    case  enumNodeType.Action when node is NodeAction action:
+                    case  NodeType.Action when node is NodeAction action:
                         ShowPanelAction(action.Key, action.Data);
                         break;
                 }
@@ -296,7 +298,7 @@ namespace SolutionBuilder.WinForms
 
         private void ShowPanelAction(string? key, CommandAction? action)
         {
-            var pnl = new Panels.pnlAction();
+            var pnl = new pnlAction();
             pnl.ActionChanged += Pnl_ActionChanged;
             pnlHost.Controls.Add(pnl);
             pnl.Dock = DockStyle.Fill;
@@ -322,7 +324,7 @@ namespace SolutionBuilder.WinForms
 
         private void ShowPanelCommand (Command? command, Installation? installation)
         {
-            var pnl = new Panels.pnlCommand();
+            var pnl = new pnlCommand();
             pnl.CommandChanged += PnlCommand_CommandChanged;
             pnl.ActionRemoved += Pnl_ActionRemoved;
             pnl.ActionEditRequest += Pnl_ActionEditRequest;
@@ -356,7 +358,9 @@ namespace SolutionBuilder.WinForms
             if (TreeConfiguration.SelectedNode is NodeCommand nCommand)
             {
                 if (nCommand.Nodes.ContainsKey(key))
-                    nCommand.Nodes.Remove(nCommand.Nodes[key]);
+                {
+                    nCommand.Nodes.Remove(nCommand.Nodes[key]!);
+                }
             }
             FileIsChanged = true;
         }
@@ -374,7 +378,7 @@ namespace SolutionBuilder.WinForms
 
         private void ShowPanelInstallation(Installation? data)
         {
-            var pnlInstallation = new Panels.pnlInstallation();
+            var pnlInstallation = new pnlInstallation();
             pnlInstallation.ValueChanged += PnlInstallation_ValueChanged;
             pnlInstallation.CommandAdded += PnlInstallation_CommandAdded;
             pnlInstallation.CommandRemoved += PnlInstallation_CommandRemoved;
@@ -461,7 +465,7 @@ namespace SolutionBuilder.WinForms
 
         private void ShowPanelRoot(SolutionConfiguration? data)
         {
-            var pnl = new Panels.pnlRoot();
+            var pnl = new pnlRoot();
             pnl.ValueChanged += PnlRoot_ValueChanged;
             pnl.InstallationAdded += Pnl_InstallationAdded;
             pnl.InstallationRemoved += Pnl_InstallationRemoved;
@@ -508,9 +512,9 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void AddInstallationNode(NodeRoot nRoot, Installation installation)
+        private static void AddInstallationNode(NodeRoot nRoot, Installation installation)
         {
-            NodeInstallation nInstallation = new NodeInstallation(installation);
+            NodeInstallation nInstallation = new(installation);
             nRoot.Nodes.Add(nInstallation);
             nInstallation.Installation = installation;
 
@@ -534,7 +538,7 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _currentFilename = null;
             _configuration = null;
@@ -544,23 +548,23 @@ namespace SolutionBuilder.WinForms
             WriteTitle();
         }
 
-        private void ctlEmpty1_OpenFileRequest(object sender, EventArgs e)
+        private void CtlEmpty1_OpenFileRequest(object sender, EventArgs e)
         {
             LaunchOpenFile();
         }
 
-        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DrawTree();
         }
 
-        private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_currentFilename!=null)
                 OpenFile(_currentFilename);
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _currentFilename = null;
             _configuration = new SolutionConfiguration();
@@ -568,7 +572,7 @@ namespace SolutionBuilder.WinForms
             DrawTree();
         }
 
-        private void openSourceFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSourceFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenSourceFile();
         }
@@ -589,7 +593,7 @@ namespace SolutionBuilder.WinForms
                 {
                     var res = Process.Start(pi);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //probabilmente VSCode non è installato
                     //Uso l'editor predefinito
@@ -611,12 +615,12 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void readMetxtToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReadMetxtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("notepad.exe",Path.Combine(Application.StartupPath,"Help","Readme.md" ));
         }
 
-        private void launchRefactoringToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LaunchRefactoringToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LaunchRefactor();
         }
@@ -650,14 +654,14 @@ namespace SolutionBuilder.WinForms
             else
                 TreeConfiguration.SelectedNode = node;
 
-            if (node is NodeInstallation n && e.Button == MouseButtons.Right)
+            if (node is NodeInstallation && e.Button == MouseButtons.Right)
             {
                 mnuInstallation.Show(TreeConfiguration, e.Location );
                 
             }
         }
 
-        private void enableToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EnableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TreeConfiguration.SelectedNode is NodeInstallation n )
             {
@@ -673,7 +677,7 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void disableToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DisableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TreeConfiguration.SelectedNode is NodeInstallation n)
             {
@@ -688,7 +692,7 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        private void excludeEverythingExceptThisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExcludeEverythingExceptThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_configuration != null && TreeConfiguration.SelectedNode is NodeInstallation n)
             {
@@ -708,7 +712,7 @@ namespace SolutionBuilder.WinForms
             RefreshTree();
         }
 
-        private void includeEverthingExceptThisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IncludeEverthingExceptThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_configuration != null && TreeConfiguration.SelectedNode is NodeInstallation n)
             {
@@ -731,7 +735,7 @@ namespace SolutionBuilder.WinForms
 
     public class Node : TreeNode
     {
-        public virtual enumNodeType NodeType { get; }
+        public virtual NodeType NodeType { get; }
     }
 
     public class NodeInstallation : Node
@@ -756,9 +760,9 @@ namespace SolutionBuilder.WinForms
             }
         }
 
-        public override enumNodeType NodeType
+        public override NodeType NodeType
         {
-            get => enumNodeType.Installation;
+            get => NodeType.Installation;
         }
 
         public void SetData(Installation? data)
@@ -796,9 +800,9 @@ namespace SolutionBuilder.WinForms
             SelectedImageKey = "ConfigurationEditor";
         }
 
-        public override enumNodeType NodeType
+        public override NodeType NodeType
         {
-            get => enumNodeType.Root;
+            get => NodeType.Root;
         }
 
         private SolutionConfiguration? _configuration;
@@ -825,9 +829,9 @@ namespace SolutionBuilder.WinForms
             
         }
 
-        public override enumNodeType NodeType
+        public override NodeType NodeType
         {
-            get => enumNodeType.Action;
+            get => NodeType.Action;
         }
 
         public string? Key
@@ -836,7 +840,7 @@ namespace SolutionBuilder.WinForms
             set
             {
                 _key = value;
-                this.Name = value;
+                Name = value;
                 ElaborateText();
             }
         }
@@ -893,27 +897,19 @@ namespace SolutionBuilder.WinForms
       
     }
 
-    public class NodeCommand : Node
+    public class NodeCommand(Command data) : Node
     {
-        private Command _command;
+        private Command _command = data;
 
-        public NodeCommand (Command data)
+        public override NodeType NodeType
         {
-            _command = data;
-        }
-
-        public override enumNodeType NodeType
-        {
-            get => enumNodeType.Command;
+            get => NodeType.Command;
         }
 
         public Command Data
         {
             get => _command;
-            set
-            {
-                SetData(value);
-            }
+            set => SetData(value);
         }
 
         public void SetData(Command data)
