@@ -18,7 +18,7 @@ namespace SolutionBuilder
 
     public class CommandConverter : JsonConverter
     {
-        static JsonSerializerSettings SpecifiedSubclassConversion = new() { ContractResolver = new CommandConcreteClassResolver(), };
+        static readonly JsonSerializerSettings SpecifiedSubclassConversion = new() { ContractResolver = new CommandConcreteClassResolver(), };
 
         public override bool CanWrite => false;
 
@@ -49,7 +49,7 @@ namespace SolutionBuilder
                             CommandReplaceProperties? command = JsonConvert.DeserializeObject<CommandReplaceProperties>(token.ToString(), SpecifiedSubclassConversion);
                             if (command != null && command.Actions != null)
                             {
-                                Dictionary<string, CommandAction> actions = new Dictionary<string, CommandAction>(command.Actions);
+                                Dictionary<string, CommandAction> actions = new(command.Actions);
 
                                 foreach (string key in actions.Keys)
                                 {

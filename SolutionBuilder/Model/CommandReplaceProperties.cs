@@ -59,11 +59,8 @@ namespace SolutionBuilder.Model
                     {
                         assemblyValue = ReplaceAssemblyInfoFile(assemblyValue, source, value);
                     }
-                    else
-                    {
-                        ReplaceAssemblyProject(project, source, sourceFallback, value);
-                    }
 
+                    ReplaceAssemblyProject(project, source, sourceFallback, value);
                 }
 
                 // this is done by default.
