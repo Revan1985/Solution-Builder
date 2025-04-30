@@ -23,7 +23,7 @@ namespace SolutionBuilder.WinForms
 
     public partial class FrmMain : Form
     {
-        public static string AppName { get; set; } = "Alesys Rebrandizer";
+        public static string AppName { get; set; } = "Rebrandizer";
 
         private const string nodeActionPrefix = nameof(NodeAction);
 
@@ -407,7 +407,7 @@ namespace SolutionBuilder.WinForms
 
         private void PnlInstallation_CommandEditRequest(object sender, Command cmd)
         {
-            //devo modificare le propriet‡ di un Command quindi lo cerco tra i nodi figlio
+            //devo modificare le propriet√† di un Command quindi lo cerco tra i nodi figlio
             TreeNode currentNode = TreeConfiguration.SelectedNode;
 
             if (currentNode!=null && currentNode is NodeInstallation node)
@@ -595,7 +595,7 @@ namespace SolutionBuilder.WinForms
                 }
                 catch (Exception)
                 {
-                    //probabilmente VSCode non Ë installato
+                    //probabilmente VSCode non √® installato
                     //Uso l'editor predefinito
                     try
                     {
