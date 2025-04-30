@@ -337,7 +337,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Alesys - Advanced Solution Refactor";
+            this.Text = "Advanced Solution Refactor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.mnuInstallation.ResumeLayout(false);
