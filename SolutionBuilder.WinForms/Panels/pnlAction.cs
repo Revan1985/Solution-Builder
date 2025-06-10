@@ -24,6 +24,7 @@ namespace SolutionBuilder.WinForms.Panels
             InitializeComponent();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool NameEnabled
         {
             get => txtName.Enabled;

@@ -31,6 +31,7 @@ namespace SolutionBuilder.WinForms.Panels
             InitializeComponent();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         /// <summary>
         /// Indica se l'Installation è Enabled o no
         /// </summary>

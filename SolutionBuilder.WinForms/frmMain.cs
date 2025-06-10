@@ -8,6 +8,7 @@ using SolutionBuilder.Model;
 using SolutionBuilder.WinForms.Panels;
 using System.Diagnostics;
 using System.Text;
+using System.ComponentModel;
 
 namespace SolutionBuilder.WinForms
 {
@@ -23,6 +24,7 @@ namespace SolutionBuilder.WinForms
 
     public partial class FrmMain : Form
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public static string AppName { get; set; } = "Rebrandizer";
 
         private const string nodeActionPrefix = nameof(NodeAction);
@@ -33,6 +35,8 @@ namespace SolutionBuilder.WinForms
 
 
         private static SolutionConfiguration? _configuration = null;
+        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public static SolutionConfiguration? Configuration {
             get => _configuration;
             set => _configuration = value;
@@ -67,6 +71,7 @@ namespace SolutionBuilder.WinForms
             Properties.Settings.Default.Save();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool FileIsChanged
         {
             get => _fileIsChanged;

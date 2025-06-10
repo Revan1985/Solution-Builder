@@ -26,12 +26,14 @@ namespace SolutionBuilder.WinForms.Panels
             cmdOk.Enabled = txtName.Text != "";
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string CommandName
         {
             get { return txtName.Text ; }
             set { txtName.Text = value ; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string CommandType
         {
             get { return cmbType.Text ; }

@@ -2,16 +2,16 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0-windows</TargetFramework>
+		<TargetFramework>net9.0-windows</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>Papirus-Team-Papirus-Mimetypes-App-json.ico</ApplicationIcon>
-		<AssemblyVersion>2.0.0.0</AssemblyVersion>
-		<FileVersion>2.0.0.0</FileVersion>
+		<AssemblyVersion>2.0.1.0</AssemblyVersion>
+		<FileVersion>2.0.1.0</FileVersion>
 		<Title>Solution Builder WinForms</Title>
-		<Version>2.0.0.0</Version>
+		<Version>2.0.1.0</Version>
 		
 	</PropertyGroup>
 
